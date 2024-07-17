@@ -28,7 +28,7 @@ pipeline {
         }
         stage ('Deploy to Cluster') {
             steps {
-                sh "kubectl apply -f deploy.yml "
+                sh "cat deploy.yml | sed 's/{{BUILD_NUMBER}}/$BUILD_NUMBER/g' | kubectl apply -f -"
                 }
             }
         }
