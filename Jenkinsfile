@@ -28,7 +28,7 @@ pipeline {
         }
         stage ('Deploy to Cluster') {
             steps {
-                sh "cat deploy.yml | sed 's/{{REPOSITORY_TAG}}/${REPOSITORY_TAG}/g' | kubectl apply -f - "
+                sh "cat deploy.yml | sed 's/{{REPOSITORY_TAG}}/${REPOSITORY_TAG}/g' | kubectl apply -f deploy.yml "
                 }
             }
         }
