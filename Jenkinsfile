@@ -17,18 +17,10 @@ pipeline {
             }
           }
        }
-        stage("Install kubectl"){
-            steps {
-                sh """
-                    curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-                    chmod +x ./kubectl
-                    ./kubectl version --client
-                """
-            }
-        }
+
         stage ('Deploy to Cluster') {
             steps {
-                sh "cat deploy.yml | sed 's/{{REPOSITORY_TAG}}/${REPOSITORY_TAG}/' | kubectl apply -f deploy.yml "
+                sh "kubectl apply -f deploy.yml "
                 }
             }
         }
