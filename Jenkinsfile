@@ -9,16 +9,6 @@ pipeline {
     }
    
     stages {
-           stage("Install kubectl"){
-            steps {
-                sh """
-                    curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
-                    chmod +x ./kubectl
-                    ./kubectl version --client
-                """
-            }
-        }   
-            
         stage ('Build and Push Image') {
             steps {
                  withDockerRegistry([credentialsId: 'docker-hub', url: ""]) {
