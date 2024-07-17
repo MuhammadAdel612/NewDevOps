@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: muhammadadel8/muhammadadel8-nginx:7
+        image: muhammadadel8/muhammadadel8-nginx:{{Build_Number}}
         resources:
           requests:
              memory: 512Mi
